@@ -53,7 +53,7 @@ public class ScrollingActivity extends AppCompatActivity {
 //            }
 //        });
         AnyChartView anyChartView = findViewById(R.id.any_chart_view);
-        anyChartView.setProgressBar(findViewById(R.id.progressBar));
+//        anyChartView.setProgressBar(findViewById(R.id.progressBar));
 
         Pie pie = AnyChart.pie();
 
@@ -65,24 +65,25 @@ public class ScrollingActivity extends AppCompatActivity {
         });
 
         List<DataEntry> data = new ArrayList<>();
+        String[] cars;
         data.add(new ValueDataEntry("Focus", 10));
         data.add(new ValueDataEntry("Not focused", 12));
-
+        pie.palette(new String[]{"#ffd505", "#ff7e05"});
         pie.data(data);
 
-        pie.title("Focus");
+//        pie.title("Focus");
+//
+//        pie.labels().position("outside");
 
-        pie.labels().position("outside");
+//        pie.legend().title().enabled(true);
+//        pie.legend().title()
+//                .text("Retail channels")
+//                .padding(0d, 0d, 0d, 0d);
 
-        pie.legend().title().enabled(true);
-        pie.legend().title()
-                .text("Retail channels")
-                .padding(0d, 0d, 0d, 0d);
-
-        pie.legend()
-                .position("center-bottom")
-                .itemsLayout(LegendLayout.HORIZONTAL)
-                .align(Align.CENTER);
+//        pie.legend()
+//                .position("center-bottom")
+//                .itemsLayout(LegendLayout.HORIZONTAL)
+//                .align(Align.CENTER);
 
         anyChartView.setChart(pie);
     }

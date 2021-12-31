@@ -3,14 +3,17 @@
     <style name="Theme.MobileUX5" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorPrimaryVariant">@color/grey</item>
         <item name="colorOnPrimary">@color/black</item>
+        <item name="android:background">@color/grey</item>
+<!--        <item name="android:textColor">#000000</item>-->
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
+        <item name="android:navigationBarColor" tools:targetApi="l">@color/white</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -19,7 +22,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.MobileUX5.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.MobileUX5.AppBarOverlay" parent="Theme.MobileUX5" />
 
-    <style name="Theme.MobileUX5.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.MobileUX5.PopupOverlay" parent="Theme.MobileUX5" />
 </resources>
