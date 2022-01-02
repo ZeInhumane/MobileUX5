@@ -8,9 +8,15 @@ import com.anychart.chart.common.dataentry.DataEntry;
 import com.anychart.chart.common.dataentry.ValueDataEntry;
 import com.anychart.chart.common.listener.Event;
 import com.anychart.chart.common.listener.ListenersInterface;
+import com.anychart.charts.Cartesian;
 import com.anychart.charts.Pie;
+import com.anychart.core.cartesian.series.Column;
 import com.anychart.enums.Align;
+import com.anychart.enums.Anchor;
+import com.anychart.enums.HoverMode;
 import com.anychart.enums.LegendLayout;
+import com.anychart.enums.Position;
+import com.anychart.enums.TooltipPositionMode;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -85,7 +91,41 @@ public class ScrollingActivity extends AppCompatActivity {
 //                .itemsLayout(LegendLayout.HORIZONTAL)
 //                .align(Align.CENTER);
 
+
+        AnyChartView anyChartView1 = findViewById(R.id.any_chart_view1);
+        anyChartView.setProgressBar(findViewById(R.id.progress_bar));
+
+        Cartesian cartesian = AnyChart.column();
+
+        List<DataEntry> data1 = new ArrayList<>();
+        data1.add(new ValueDataEntry("Rouge", 80540));
+        data1.add(new ValueDataEntry("Foundation", 94190));
+        data1.add(new ValueDataEntry("Mascara", 102610));
+        data1.add(new ValueDataEntry("Lip gloss", 110430));
+
+
+        Column column = cartesian.column(data);
+
+        column.tooltip()
+                .titleFormat("{%X}")
+                .offsetX(0d)
+                .offsetY(0d)
+                .format("${%Value}{groupsSeparator: }");
+
+        cartesian.animation(true);
+        cartesian.title("Top 10 Cosmetic Products by Revenue");
+
+        cartesian.yScale().minimum(0d);
+
+        cartesian.yAxis(0).labels().format("${%Value}{groupsSeparator: }");
+
+        cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
+        cartesian.interactivity().hoverMode(HoverMode.BY_X);
+
+        cartesian.xAxis(0).title("Product");
+        cartesian.yAxis(0).title("Revenue");
         anyChartView.setChart(pie);
+        anyChartView1.setChart(cartesian);
     }
 
 
