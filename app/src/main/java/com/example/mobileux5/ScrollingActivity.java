@@ -2,6 +2,7 @@ package com.example.mobileux5;
 
 import android.os.Bundle;
 
+import com.anychart.APIlib;
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
 import com.anychart.chart.common.dataentry.DataEntry;
@@ -59,6 +60,9 @@ public class ScrollingActivity extends AppCompatActivity {
 //            }
 //        });
         AnyChartView anyChartView = findViewById(R.id.any_chart_view);
+        APIlib.getInstance().setActiveAnyChartView(anyChartView);
+
+        anyChartView.setProgressBar(findViewById(R.id.progress_bar));
 //        anyChartView.setProgressBar(findViewById(R.id.progressBar));
 
         Pie pie = AnyChart.pie();
@@ -77,55 +81,49 @@ public class ScrollingActivity extends AppCompatActivity {
         pie.palette(new String[]{"#ffd505", "#ff7e05"});
         pie.data(data);
 
-//        pie.title("Focus");
-//
-//        pie.labels().position("outside");
 
-//        pie.legend().title().enabled(true);
-//        pie.legend().title()
-//                .text("Retail channels")
-//                .padding(0d, 0d, 0d, 0d);
-
-//        pie.legend()
-//                .position("center-bottom")
-//                .itemsLayout(LegendLayout.HORIZONTAL)
-//                .align(Align.CENTER);
-
+        anyChartView.setChart(pie);
 
         AnyChartView anyChartView1 = findViewById(R.id.any_chart_view1);
-        anyChartView.setProgressBar(findViewById(R.id.progress_bar));
+        APIlib.getInstance().setActiveAnyChartView(anyChartView1);
 
         Cartesian cartesian = AnyChart.column();
 
         List<DataEntry> data1 = new ArrayList<>();
-        data1.add(new ValueDataEntry("Rouge", 80540));
-        data1.add(new ValueDataEntry("Foundation", 94190));
-        data1.add(new ValueDataEntry("Mascara", 102610));
-        data1.add(new ValueDataEntry("Lip gloss", 110430));
+        data1.add(new ValueDataEntry("Sun", 4));
+        data1.add(new ValueDataEntry("Mon", 1));
+        data1.add(new ValueDataEntry("Tue", 2));
+        data1.add(new ValueDataEntry("Wed", 6));
+        data1.add(new ValueDataEntry("Thu", 4));
+        data1.add(new ValueDataEntry("Fri", 6));
+        data1.add(new ValueDataEntry("Sat", 7));
+        data1.add(new ValueDataEntry("Sun", 2));
 
-
-        Column column = cartesian.column(data);
+        Column column = cartesian.column(data1);
 
         column.tooltip()
                 .titleFormat("{%X}")
+                .position(Position.CENTER_BOTTOM)
+                .anchor(Anchor.CENTER_BOTTOM)
                 .offsetX(0d)
                 .offsetY(0d)
-                .format("${%Value}{groupsSeparator: }");
+                .format("{%Value}{groupsSeparator: } Hours");
 
         cartesian.animation(true);
-        cartesian.title("Top 10 Cosmetic Products by Revenue");
 
         cartesian.yScale().minimum(0d);
 
-        cartesian.yAxis(0).labels().format("${%Value}{groupsSeparator: }");
+        cartesian.yAxis(0).labels().format("{%Value}{groupsSeparator: } Hrs");
 
         cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
         cartesian.interactivity().hoverMode(HoverMode.BY_X);
 
-        cartesian.xAxis(0).title("Product");
-        cartesian.yAxis(0).title("Revenue");
-        anyChartView.setChart(pie);
+//        cartesian.xAxis(0).title("Day");
+//        cartesian.yAxis(0).title("");
+        cartesian.palette(new String[]{"#ff7e05", "#ff7e05"});
         anyChartView1.setChart(cartesian);
+
+
     }
 
 
@@ -138,15 +136,6 @@ public class ScrollingActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 }
